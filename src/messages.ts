@@ -17,7 +17,7 @@ messages.post ('/', bodyParser.json(),(req:Request, res:Response)=>{
 
 messages.post ('/likes',bodyParser.json(),(req:Request, res:Response)=>{
     const {messageId, userId, like } = req.body;
-    return res.send(updateLike (messageId, userId, like));
+    return res.send(updateLike (messageId, userId, like, mockMessages));
 } )
 
 
