@@ -8,16 +8,20 @@ userDetails.get ('/', (req:Request, res:Response) =>{
     return res.send(mockUserDetails);
 })
 
+function validateUserId(userId: number) {
+    if (userId < 0 || userId >mockUserDetails.length) {
+        throw new Error('No such user ID');
+    }
+    return userId;
+}
 
 userDetails.get('/:id', (req: Request, res: Response) => {
     const id = Number (req.params.id);
     try {
-        // if (id<mockUserDetails.length)
-        res.send([mockUserDetails[id-1]])
+        res.send([mockUserDetails[validateUserId(id-1)]])
     }
     catch (e){
-        throw new Error('BROKEN')
-        // res.status(400).send("No such id")
+        res.status(404).send(e.message)
     }
 })
 export default userDetails;

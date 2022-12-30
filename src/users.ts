@@ -7,6 +7,4 @@ users.get ('/', (req:Request, res:Response) =>{
     return res.send(mockUsers());
 })
 
-
-
 export default users;
